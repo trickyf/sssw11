@@ -48,9 +48,25 @@ select ?something ?country where {
  ?country <http://dbpedia.org/ontology/areaCode> ?value
 }
 
-You can now use your superior intellect to decide whether this is a "fact" or not!
+The result is;
+
+<table class="sparql" border="1">
+  <tr>
+    <th>something</th>
+    <th>country</th>
+  </tr>
+  <tr>
+    <td>http://dbpedia.org/resource/Ozzfest:_10th_Anniversary</td>
+    <td>http://dbpedia.org/resource/Camden,_New_Jersey</td>
+
+  </tr>
+</table>
+
+This indicates that the resource "Ozzfest:_10th_Anniversary" incorrectly identifies "Camden,_New_Jersey" as a country.
 
 ************************************************************************************************************************************
+
+The sparql/rules file identifies the start of a collection of sparql queries which identifies candidate errors in data.
 
 * To produce a simple visulisation of this;
 

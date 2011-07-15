@@ -1,0 +1,5 @@
+select distinct ?o 
+where {
+ ?s <http://dbpedia.org/property/city> ?o .
+ ?t <http://dbpedia.org/ontology/country> ?o .
+}

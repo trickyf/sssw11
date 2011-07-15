@@ -33,12 +33,30 @@ cat countrydata | perl guesserator.pl > countrypredicates.out
 
 * To identify this;
 
-TODO
+EG; in the example folder you will find countrypredicates.out.
 
+This shows our first candidate;
 
+<http://dbpedia.org/ontology/areaCode> 1
+
+This suggests that one "country" has an "areaCode"
+
+To find out which country is affected;
+
+select ?something ?country where { 
+ ?something <http://dbpedia.org/property/country> ?country .
+ ?country <http://dbpedia.org/ontology/areaCode> ?value
+}
+
+You can now use your superior intellect to decide whether this is a "fact" or not!
+
+************************************************************************************************************************************
 
 * To produce a simple visulisation of this;
 
 cat countrypredicates.out | perl mkvis.pl > pie.html
 
 open a browser to pie.html
+
+************************************************************************************************************************************
+

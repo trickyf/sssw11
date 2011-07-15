@@ -1,1 +1,44 @@
-Initial readme about our sssw11 project
+This project should help you identify potentially incorrect data in ntriples format.
+
+* First of all you will need to download the data you wish to clean.
+
+* If your data is broad / about multiple things try and focus on a particular subset of the data
+
+For example this SPARQL query will identify all the resources that have been called a country in dbpedia;
+
+select distinct ?x where { 
+ ?something <http://dbpedia.org/property/country> ?x .
+}
+
+The results of this query can be found in the examples folder in countrylist;
+
+* Create a subset of the dbpedia dataset which just contains the resources in country list
+
+for country in $(cat countrylist)
+do
+ grep "^<$country>" dbpedia.nt >> countrydata
+done
+
+* Finally;
+
+cat countrydata | perl guesserator.pl > countrypredicates.out
+
+* This will produce a file with a count of predicates for every country
+
+* This data can now be interpreted in two (probably more :)) ways;
+
+1. Low counts on predicates might indicate that a country has an incorrect predicate and should be investigated
+
+2. Low counts might indicate that the resource is not actually a country - and should be investigated;
+
+* To identify this;
+
+TODO
+
+
+
+* To produce a simple visulisation of this;
+
+cat countrypredicates.out | perl mkvis.pl > pie.html
+
+open a browser to pie.html
